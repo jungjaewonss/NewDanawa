@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="danawa.mapper.MemberMapper">
+	<insert id="joinMember" parameterType="danawa.entity.Member">
+		insert into danawa_mem 
+		(memId,memPassword,memName,memNickName,memPhone)
+		values(			
+			#{memId},
+			#{memPassword},
+			#{memName},
+			#{memNickName},
+			#{memPhone}
+		);
+	</insert>
+	
+	<select id="memIdCheck" parameterType="danawa.entity.Member" resultType="int">
+		select count(*) from danawa_mem
+		where memId = #{memId};	
+	</select>
+	
+	<select id="memLogin" parameterType="danawa.entity.Member" resultType="danawa.entity.Member">
+		select * from danawa_mem
+		where	memId = #{memId} and
+				memPassword = #{memPassword};	
+	</select>
+	
+</mapper>
